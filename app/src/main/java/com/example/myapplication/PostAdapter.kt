@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PostAdapter(var postList:MutableList<Post>) : RecyclerView.Adapter<PostAdapter.PostHolder>() {
+class PostAdapter(var postList:MutableList<Post>, var postInt: PostInterface) : RecyclerView.Adapter<PostAdapter.PostHolder>() {
 
     class PostHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var img:ImageView = itemView.findViewById(R.id.img)
@@ -32,5 +32,12 @@ class PostAdapter(var postList:MutableList<Post>) : RecyclerView.Adapter<PostAda
         holder.title.text = item.title
         holder.content.text = item.content
         holder.date.text = item.updatedAt
+        holder.itemView.setOnClickListener {
+            postInt.onClick(item)
+        }
+    }
+
+    interface PostInterface{
+        fun onClick(post: Post)
     }
 }

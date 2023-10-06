@@ -67,7 +67,18 @@ class HomeFragment : Fragment() {
                         var post = Post(content, image, title, updatedAt)
 
                         postList.add(post)
-                        var adapter = PostAdapter(postList)
+
+                        var adapter = PostAdapter(postList, object : PostAdapter.PostInterface{
+                            override fun onClick(post: Post) {
+                                var bundle = Bundle()
+                                bundle.putSerializable("post", post)
+                                var postFragment = PostFragment()
+                                postFragment.arguments = bundle
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.main, postFragment)
+                                    .commit()
+                            }
+                        })
                         binding.postRv.adapter = adapter
                     }
                 }

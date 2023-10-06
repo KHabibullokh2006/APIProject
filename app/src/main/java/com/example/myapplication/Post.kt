@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import java.io.Serializable
+
 data class Post(
 //    val category: String,
     val content: String,
@@ -13,4 +15,4 @@ data class Post(
     val updatedAt: String,
 //    val url: String,
 //    val userId: Int
-)
+) : Serializable
